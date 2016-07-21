@@ -1,0 +1,14 @@
+$lines-color: #000;
+
+.lines{ 
+  border-bottom: 17px double $lines-color; 
+  border-top: 6px solid $lines-color;
+  content: "";
+  height: 5px; 
+  width: 30px;
+  cursor: pointer;
+  position: absolute;
+  &.bottom {
+    bottom: 20px;
+  }
+}

@@ -1,0 +1,132 @@
+$right-arrow-width: 5px;
+$item-hover-color: #fff;
+$z-index-1: 10;
+$z-index-2: 100;
+$z-index-3: 1000;
+$arrow-color: #7d7d7d;
+$menu-bg-color: #fff;
+
+@mixin verticalArrow() {
+  width: 0; 
+  height: 0;
+  margin: 0 auto;
+  border-left: $right-arrow-width solid transparent;
+  border-right: $right-arrow-width solid transparent;
+  cursor: pointer;
+}
+
+.context-menu-wrapper {
+  width: 128px;
+  display: inline-block;
+  position: absolute;
+  margin: 0;
+  padding: 2px 0;
+  border: 1px solid #c5c5c5;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: $menu-bg-color;
+  top: 0;
+  left: 100%;
+  z-index: $z-index-2;
+
+  .context-menu {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+    overflow: hidden;
+  } 
+
+  li {
+    height: 26px;
+  }
+  
+  &.scrolling {
+    padding: 8px 0;
+  }
+
+  &.scrolling > .arrow-li-up, &.scrolling > .arrow-li-down{
+    display: block;
+  }
+
+  .arrow-li-up, .arrow-li-down {
+    position: absolute;
+    width: 100%;
+    z-index: $z-index-3;
+    display: none;
+    background-color: $menu-bg-color;
+  }
+
+  .arrow-li-up {
+    top: 0;
+  }
+
+  .arrow-li-down {
+    bottom: 0;
+  }
+    
+  .menu-item-wrapper {
+    position: relative;
+    padding: 3px 1em 3px .4em;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      border: 1px solid #003eff;
+      background: #007fff;
+      font-weight: normal;
+      color: $item-hover-color;
+      .arrow-right {
+        border-left-color: $item-hover-color;
+      }
+    }
+    &.disabled, &.disabled:hover {
+      border: 1px solid transparent;
+      background: $menu-bg-color;
+      font-weight: normal;
+      color: #999;
+    }
+  }
+
+  .arrow-right {
+    position: absolute;
+    right: 3px;
+    top: 6px;
+    width: 0; 
+    height: 0; 
+    border-top: $right-arrow-width solid transparent;
+    border-bottom: $right-arrow-width solid transparent;
+    border-left: $right-arrow-width solid $arrow-color;
+  }
+  
+  .arrow-up {
+    @include verticalArrow();
+    padding: 2px 0 2px;
+    margin-bottom: 2px;
+    border-bottom: $right-arrow-width solid $arrow-color;
+  }
+
+  .arrow-down {
+    @include verticalArrow();
+    padding: 2px 0 2px;
+    margin-top: 2px;
+    border-top: $right-arrow-width solid $arrow-color;
+  }
+
+}
+
+.overlay-for-menu {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: $z-index-1;
+  top: 0;
+  left: 0;
+}
+
+.menu-hidden {
+  display: none;
+}
+
+.menu-invisible {
+  visibility: hidden;
+}
